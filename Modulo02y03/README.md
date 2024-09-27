@@ -1,11 +1,3 @@
-# typescript-sandbox
+# Entrega Módulo 02 y 03 con la sandbox de typescript
 
-Para la parte de cada módulo en la que te planteamos ejercicios con JavaScript puedes usar este sandbox.
-
-Pasos:
-
-- Clonate el proyecto.
-- Instala las dependencias con `npm install`.
-- Ejecuta el sandbox con `npm run dev`.
-- Abre el navegador en `http://localhost:5173/` (si ese puerto no te funciona, mira en la consola donde has hecho el build, puede que este ocupado y se haya abierto en otro puerto).
-- Puedes empezar a meter tu código en el fichero:
+Como las entregas 02 y 03 eran pequeñas, he decidido hacerlas juntas en typescript.
