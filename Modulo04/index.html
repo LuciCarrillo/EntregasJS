@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turno clínica</title>
+</head>
+<body>
+    <div class="turno-display">
+        <button id="botonreset" class="botonreset">Reset</button>
+        <h1 id = "turnoactual" class="numero-turno">01</h1>
+        <p class="texto-turno">Por favor, acérquese al mostrador</p>
+        <div>
+            <button id="botonanterior" class="boton">Anterior</button>
+            <button id="botonsiguiente" class="boton">Siguiente</button>
+        </div>
+        <div>
+            <label class="texto-turno">Actualizar turno a:</label>
+            <input id="actualizaturno" type="text" value="00" class="inputactualizar" minlength="2"/>
+            <div class="contenedorbotonactualizar">
+                <button id="botonactualizar" class="botonactualizar">Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
+
