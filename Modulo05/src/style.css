@@ -1,0 +1,92 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: url(/imagenes/backgroundCarta.jpg); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.botonnuevapartida {
+  display: grid;
+  justify-content: flex-end;
+  margin-right: 5%;
+  padding-top: 2%;
+}
+
+.juego {
+  margin: 0;
+  display: grid;
+  justify-content: center;
+  
+}
+
+.puntuacion{
+  text-align: center;
+  margin-bottom: 5%;
+  color: black;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: white;
+  font-weight: bold;
+}
+
+.mostrarestado{
+  display: block;
+  text-align: center;
+  margin-bottom: 5%;
+  color: black;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: white;
+  font-weight: bold;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-bottom: 10%;
+}
+button:hover {
+  border-color: white;
+}
+
+
+.imagen {
+  padding-left: 7%;
+  border-radius: 15px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

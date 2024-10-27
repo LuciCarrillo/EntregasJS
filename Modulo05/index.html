@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego de cartas</title>
+  </head>
+  <body>
+      <div class="botonnuevapartida">
+        <button id="nuevapartida">Nueva partida</button>
+        <button class="ocultarboton" disabled="true" id = "adivinafuturo">Adivina futuro</button>
+      </div>
+      <div class="juego">
+        <div class="ocultarestado" id="estado"></div>
+        <div class="puntuacion" id="puntuacion"></div>
+        <div>
+          <button id="damecarta">Dame carta</button>
+          <button id="plantarse">Me planto</button></div>
+        <div id="carta"></div>
+        <img class="imagen" id = "imagen" src="/imagenes/cartaBocaAbajo.jpg" alt="Imagen de una carta de la baraja española puesta boca abajo">
+      </div>
+    <script type="module" src="/src/main.ts"></script>
+  </div>
+  </body>
+</html>
