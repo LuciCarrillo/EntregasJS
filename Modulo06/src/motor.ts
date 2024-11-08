@@ -13,17 +13,18 @@ export const dameCarta = (numAleatorio : number) : number => {
     return cartas[numAleatorio];
 }
 
-export const sumaPuntuacion = (valorCarta : number)  : number => {
-    let puntuacion = document.getElementById("puntuacion");
-
-    if (puntuacion === null) {
-        console.error("Error");
+export const obtenerpuntosCarta = (cartaAleatoria : number) => {
+    if(cartaAleatoria > 7){
+        return 0.5;
     }
 
-    if(valorCarta && valorCarta<= 7){
-        partida.puntuacionActual = partida.puntuacionActual + valorCarta;
-    } else{
-        partida.puntuacionActual = partida.puntuacionActual + 0.5;
-    }
-    return partida.puntuacionActual;
+    return cartaAleatoria;
+}
+
+export const sumaPuntuacion = (puntuacion : number)  : number => {
+    return partida.puntuacionActual + puntuacion;
+}
+
+export const actualizarPuntuacionActual = (puntosActuales : number) => {
+    partida.puntuacionActual = puntosActuales;
 }

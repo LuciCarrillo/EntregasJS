@@ -8,15 +8,35 @@ import{
     handleAdivinaFuturo
 } from "./ui";
 
-const botonnuevapartida = document.getElementById("nuevapartida") as HTMLButtonElement;
-const botonplantarse = document.getElementById("plantarse") as HTMLButtonElement;
-const botondamecarta = document.getElementById("damecarta") as HTMLButtonElement;
-const botonadivinafuturo = document.getElementById("adivinafuturo") as HTMLButtonElement;
+const botonplantarse = document.getElementById("plantarse");
+const botonnuevapartida = document.getElementById("nuevapartida");
+const botondamecarta = document.getElementById("damecarta");
+const botonadivinafuturo = document.getElementById("adivinafuturo");
 
 
 document.addEventListener("DOMContentLoaded", muestraPuntuacion);
 
-botondamecarta.addEventListener("click", handlePideCartaClick);
-botonplantarse.addEventListener("click", handlePlantarseClick);
-botonnuevapartida.addEventListener("click", reanudarPartida);
-botonadivinafuturo.addEventListener("click", handleAdivinaFuturo);
+
+if (botondamecarta && botondamecarta instanceof HTMLButtonElement) {
+    botondamecarta.addEventListener("click", handlePideCartaClick);
+} else {
+    console.log('Error')
+}
+
+if (botonplantarse && botonplantarse instanceof HTMLButtonElement) {
+    botonplantarse.addEventListener("click", handlePlantarseClick);
+} else {
+    console.log('Error')
+}
+
+if (botonnuevapartida && botonnuevapartida instanceof HTMLButtonElement) {
+    botonnuevapartida.addEventListener("click", reanudarPartida);
+} else {
+    console.log('Error')
+}
+
+if (botonadivinafuturo && botonadivinafuturo instanceof HTMLButtonElement) {
+    botonadivinafuturo.addEventListener("click", handleAdivinaFuturo);
+} else {
+    console.log('Error')
+}

@@ -5,7 +5,10 @@ import{
 import {
     dameCarta,
     dameNumAleatorio,
-    sumaPuntuacion
+    obtenerpuntosCarta,
+    sumaPuntuacion,
+    actualizarPuntuacionActual
+
 } from "./motor";
 
 const imagencarta = document.getElementById("imagen");
@@ -15,8 +18,7 @@ const botondamecarta = document.getElementById("damecarta") as HTMLButtonElement
 const botonadivinafuturo = document.getElementById("adivinafuturo") as HTMLButtonElement;
 
 export const pideCarta = (cartaAleatoria : number) => {
-
-    if(imagencarta !== null && imagencarta !== undefined && imagencarta instanceof HTMLImageElement){
+    if(imagencarta && imagencarta instanceof HTMLImageElement){
         const cartaDada = cartaAleatoria;
         imagencarta.src = `/imagenes/${cartaDada}.jpg`;
     }else{
@@ -35,86 +37,126 @@ export const muestraPuntuacion = () => {
 
 let estado = document.getElementById("estado");
 
+const mostrarMensajePartida = (mensaje: string) => {
+    const elemento = document.getElementById('estado');
+
+    if (elemento && elemento instanceof HTMLDivElement) {
+        elemento.innerHTML = mensaje;
+    }
+}
+
+const cambiosEstadoYBotonesAlGanar = () => {
+    if(estado && estado instanceof HTMLDivElement && botondamecarta && botondamecarta instanceof HTMLButtonElement && botonplantarse && botonplantarse instanceof HTMLButtonElement && botonadivinafuturo && botonadivinafuturo instanceof HTMLButtonElement){
+        estado.classList.remove('ocultarestado');
+        estado.classList.add('mostrarestado');
+        botondamecarta.disabled = true;
+        botonplantarse.disabled = true;
+        botonadivinafuturo.disabled = true;
+    }
+}
+
+const cambiosEstadoYBotonesAlPerder = () => {
+    if(estado && estado instanceof HTMLDivElement && botondamecarta && botondamecarta instanceof HTMLButtonElement && botonplantarse && botonplantarse instanceof HTMLButtonElement && botonadivinafuturo && botonadivinafuturo instanceof HTMLButtonElement){
+        estado.classList.remove('ocultarestado');
+        estado.classList.add('mostrarestado');
+        botondamecarta.disabled = true;
+        botonplantarse.disabled = true;
+        botonadivinafuturo.disabled = true;
+    }
+}
+
 const gestionarGanarPerder = (puntuacionActual : number) => {
-    if(estado!== null && estado !== undefined){
+    if(estado && estado instanceof HTMLDivElement){
         if(puntuacionActual < 7.5){
             estado.innerHTML = ``;
         }else if(puntuacionActual === 7.5){
-            estado.classList.remove('ocultarestado');
-            estado.classList.add('mostrarestado');
-            estado.innerHTML = `¡Enhorabuena, lo has clavado!`;
-            botondamecarta.disabled = true;
-            botonplantarse.disabled = true;
-            botonadivinafuturo.disabled = true;
+            cambiosEstadoYBotonesAlGanar();
+            mostrarMensajePartida(`¡Enhorabuena, lo has clavado!`);
+            
         } else if(puntuacionActual > 7.5){
-            estado.innerHTML = `¡GAME OVER!`;
-            estado.classList.remove('ocultarestado');
-            estado.classList.add('mostrarestado');
-            botondamecarta.disabled = true;
-            botonplantarse.disabled = true;
-            botonadivinafuturo.disabled = true;
+            cambiosEstadoYBotonesAlPerder();
+            mostrarMensajePartida(`¡GAME OVER!`);
         }else{
             console.error("Error");
         }
     }
 }
 
-const comprobarPuntuacion = (puntuacionTotal : number) => {
-    if(estado!== null && estado !== undefined){
+const cambioEstadoComprobarPuntuacion = () => {
+    if(estado && estado instanceof HTMLDivElement){
         estado.classList.remove('ocultarestado');
         estado.classList.add('mostrarestado');
+    }
+}
 
-        if(puntuacionTotal <= 4.5){
-            estado.innerHTML = `¡Has sido muy conservador!`;
-        }else if (puntuacionTotal === 5 || puntuacionTotal === 5.5) {
-            estado.innerHTML = `Te ha entrado el canguelo eh?`;
-        }else if (puntuacionTotal === 6 || puntuacionTotal === 6.5) {
-            estado.innerHTML = `Casi casi...`;
-        }else if (puntuacionTotal === 7) {
-            estado.innerHTML = `Casi casi...`;
-        }else if (puntuacionTotal === 7.5) {
-            estado.innerHTML = `¡ Lo has clavado! ¡Enhorabuena!`;
-        }
+const comprobarPuntuacion = (puntuacionTotal : number) => {
+    cambioEstadoComprobarPuntuacion();
+    
+    if(puntuacionTotal <= 4.5){
+        mostrarMensajePartida(`¡Has sido muy conservador!`);
+    }else if (puntuacionTotal === 5 || puntuacionTotal === 5.5) {
+        mostrarMensajePartida(`Te ha entrado el canguelo eh?`);
+    }else if (puntuacionTotal === 6 || puntuacionTotal === 6.5) {
+        mostrarMensajePartida(`Casi casi...`);
+    }else if (puntuacionTotal === 7) {
+        mostrarMensajePartida(`Casi casi...`);
+    }else if (puntuacionTotal === 7.5) {
+        mostrarMensajePartida(`¡ Lo has clavado! ¡Enhorabuena!`);
+    }
+}
+
+const cambiosBotonesReanudarPartida = () => {
+    if(botondamecarta && botondamecarta instanceof HTMLButtonElement && botonplantarse && botonplantarse instanceof HTMLButtonElement){
+        botondamecarta.disabled = false;
+        botonplantarse.disabled = false;
+    }
+}
+
+const cambioEstadoReanudarPartida = () => {
+    if(estado && estado instanceof HTMLDivElement){
+        estado.classList.remove('mostrarestado');
+        estado.classList.add('ocultarestado');
+        estado.innerHTML = "";
     }
 }
 
 export const reanudarPartida =  () => {
     let puntuacion = document.getElementById("puntuacion");
 
-    if(puntuacion!== null && puntuacion !== undefined && estado!== null && estado !== undefined && imagencarta !== null && imagencarta !== undefined && imagencarta instanceof HTMLImageElement){
+    if(puntuacion && puntuacion instanceof HTMLDivElement && estado && estado instanceof HTMLDivElement && imagencarta && imagencarta instanceof HTMLImageElement){
         partida.puntuacionActual = 0;
         puntuacion.innerHTML = `Puntuación actual 0`;
         imagencarta.src = `/imagenes/cartaBocaAbajo.jpg`;
-        botondamecarta.disabled = false;
-        botonplantarse.disabled = false;
-        botonadivinafuturo.disabled = true;
-        estado.classList.remove('mostrarestado');
-        estado.classList.add('ocultarestado');
+        cambiosBotonesReanudarPartida();
+        cambioEstadoReanudarPartida();
     }
-    if(estado!== null && estado !== undefined){
-        estado.innerHTML = "";
-        }
+    
 }
 
 export const handlePideCartaClick = () => {
-    const cartaAleatoria = dameCarta(dameNumAleatorio());
+    const numeroAleatorio = dameNumAleatorio();
+    const cartaAleatoria = dameCarta(numeroAleatorio);
     pideCarta(cartaAleatoria);
-    const puntuacion = sumaPuntuacion(cartaAleatoria);
+    const puntosCarta = obtenerpuntosCarta(cartaAleatoria);
+    const puntuacion = sumaPuntuacion(puntosCarta);
+    actualizarPuntuacionActual(puntuacion);
     muestraPuntuacion();
     gestionarGanarPerder(puntuacion);
+}
+
+const cambiosBotonesPlantarse = () => {
+    if(botondamecarta && botondamecarta instanceof HTMLButtonElement && botonplantarse && botonplantarse instanceof HTMLButtonElement && botonadivinafuturo && botonadivinafuturo instanceof HTMLButtonElement){
+        botondamecarta.disabled = true;
+        botonplantarse.disabled = true;
+        botonadivinafuturo.disabled = false;
+    }
 }
 
 export const handlePlantarseClick = () => {
     comprobarPuntuacion(partida.puntuacionActual);
-    botondamecarta.disabled = true;
-    botonplantarse.disabled = true;
-    botonadivinafuturo.disabled = false;
+    cambiosBotonesPlantarse();
 }
 
 export const handleAdivinaFuturo = () => {
-    const cartaAleatoria = dameCarta(dameNumAleatorio());
-    pideCarta(cartaAleatoria);
-    const puntuacion = sumaPuntuacion(cartaAleatoria);
-    muestraPuntuacion();
-    gestionarGanarPerder(puntuacion);
+    handlePideCartaClick(); 
 }
